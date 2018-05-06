@@ -24,7 +24,7 @@ class Main < Sinatra::Base
   end
 
   def do_something_with_text(text, username)
-    reply = ''
+    reply = text
     # do something here
     reply# return
   end
