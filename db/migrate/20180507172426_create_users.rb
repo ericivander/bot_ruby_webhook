@@ -11,6 +11,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
 
     add_index :users, :jira_user_email
     add_index :users, :telegram_user_id
+    add_index :users, :telegram_username
     add_index :users, :created_at
     add_index :users, :updated_at
   end
