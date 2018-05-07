@@ -25,7 +25,9 @@ class Main < Sinatra::Base
 
   def do_something_with_text(text, username)
     reply = text
-    # do something here
+    if text == '/start'
+      reply = 'Welcome to Point!'
+    end
     reply# return
   end
 end
