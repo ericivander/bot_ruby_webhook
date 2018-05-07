@@ -2,6 +2,10 @@ require 'dotenv/load'
 require 'sinatra'
 require 'telegram/bot'
 require 'json'
+require 'active_support/core_ext/hash'
+require 'sinatra/activerecord'
+require './models/issue.rb'
+require './models/user.rb'
 
 class Main < Sinatra::Base
   configure do
@@ -10,6 +14,20 @@ class Main < Sinatra::Base
 
   get '/' do
     'hello world!'
+  end
+
+  post '/issues/{id}/update' do
+    issue = Issue.find_by_jira_issue_id(params[:id])
+
+    params = JSON.parse(request.body.read).with_indifferent_access
+    if issue
+      issue.update_attributes!(serialize_issue(params))
+    else
+      issue = Issue.create!(serialize_issue(params))
+    end
+    settings.bot.api.send_message(chat_id: 218550401, text: issue.to_s)
+
+    200
   end
 
   post '/message/{token}' do
@@ -32,5 +50,28 @@ class Main < Sinatra::Base
     reply# return
   end
 
-  
+  def serialize_issue(params)
+    assignee_jira_email = params[:issue][:field][:assignee][:emailAddress]
+    assigner_jira_email = params[:user][:emailAddress]
+    assignee = User.find_by_jira_email(assignee_jira_email)
+    assigner = User.find_by_jira_email(assigner_jira_email)
+
+    jira_issue_id = params[:issue][:id]
+    jira_issue_key = params[:issue][:key]
+    jira_issue_summary = params[:issue][:fields][:summary]
+    jira_issue_parent_summary = params[:issue][:fields][:parent][:summary]
+    jira_issue_status = params[:issue][:fields][:status][:name]
+    jira_issue_detail_status = params[:issue][:fields][:customfield_10601][:value]
+
+    {
+      asignee_id: asignee&.id,
+      jira_issue_id: jira_issue_id,
+      jira_issue_key: jira_issue_key,
+      jira_issue_summary: jira_issue_summary,
+      jira_issue_parent_summary: jira_issue_parent_summary,
+      jira_issue_status: jira_issue_status,
+      jira_issue_detail_status: jira_issue_detail_status,
+      assigner_id: assigner.id
+    }
+  end
 end
