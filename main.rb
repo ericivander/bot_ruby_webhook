@@ -30,7 +30,7 @@ class Main < Sinatra::Base
     reply = text
     if text == '/start'
       reply = 'Welcome to Point!'
-    else if text == '/get'
+    elsif text == '/get'
       reply = retrieve_assigned_issue('maulana.muzakki')
     end
     reply# return
