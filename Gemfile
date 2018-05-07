@@ -10,4 +10,5 @@ gem 'rest-client'
 
 group :development do
   gem 'pry'
+  gem 'racksh'
 end
