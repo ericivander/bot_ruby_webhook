@@ -3,8 +3,6 @@ module Channel
     RestDefault = { open_timeout: 5, timeout: 5 }
 
     def self.restclient(opts, &block)
-      payload = opts.except(:headers)
-
       response = RestClient::Request.execute(RestDefault.merge(opts), &block)
       response = JSON.parse response.body
 
