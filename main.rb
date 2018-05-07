@@ -1,6 +1,9 @@
 require 'dotenv/load'
 require 'sinatra'
 require 'telegram/bot'
+require 'net/http'
+require 'uri'
+require 'json'
 
 class Main < Sinatra::Base
   configure do
@@ -27,7 +30,24 @@ class Main < Sinatra::Base
     reply = text
     if text == '/start'
       reply = 'Welcome to Point!'
+    else if text == '/get'
+      reply = retrieve_assigned_issue('maulana.muzakki')
     end
     reply# return
+  end
+
+  def retrieve_assigned_issue(username)
+    uri = URI.parse("https://welcometopoint.atlassian.net/rest/agile/1.0/board/1/issue?jql=assignee=" + username)
+
+    header = {'Content-Type': 'text/json', 'Authorization': 'Basic YWRpZmFpc2FsLnJAZ21haWwuY29tOlF3blNoQlFia0lkM1N4Z2FoY3lqNkNFNw=='}
+
+    # Create the HTTP objects
+    http = Net::HTTP.new(uri.host, uri.port)
+    request = Net::HTTP::Get.new(uri.request_uri, header)
+
+    # Send the request
+    response = http.request(request)
+
+    response# return
   end
 end
