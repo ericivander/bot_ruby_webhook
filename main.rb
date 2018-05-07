@@ -1,6 +1,7 @@
 require 'dotenv/load'
 require 'sinatra'
 require 'telegram/bot'
+require 'json'
 
 class Main < Sinatra::Base
   configure do
@@ -30,4 +31,6 @@ class Main < Sinatra::Base
     end
     reply# return
   end
+
+  
 end
