@@ -1,5 +1,5 @@
 module Channel
-  class Jira
-    
+  module Jira
+    def get_issues(*args); end
   end
 end

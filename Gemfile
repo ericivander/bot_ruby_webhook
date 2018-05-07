@@ -7,6 +7,7 @@ gem 'puma'
 gem 'sinatra'
 gem 'telegram-bot-ruby'
 gem 'rest-client'
+gem 'require_all'
 
 group :development do
   gem 'pry'
