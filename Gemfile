@@ -3,6 +3,7 @@ source 'https://rubygems.org/'
 ruby '2.4.2'
 
 gem 'dotenv'
+gem 'rake'
 gem 'mysql2'
 gem 'puma'
 gem 'rest-client'
