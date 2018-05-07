@@ -1,3 +1,5 @@
+require 'rest-client'
+
 module Channel
   module Connection
     RestDefault = { open_timeout: 5, timeout: 5 }

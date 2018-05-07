@@ -6,12 +6,15 @@ module Channel
       end
 
       def run!
-        endpoint = ENV['JIRA_ENDPOINT']
+        endpoint = ENV['JIRA_ENDPOINT'] + "rest/agile/1.0/board/1/issue"
+        binding.pry
         response = Channel::Connection.get(endpoint, auth, query_params)
       end
 
       def query_params
-        
+        {
+          jql: "assignee=#{@jira_user}"
+        }
       end
     end
   end
