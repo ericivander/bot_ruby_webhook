@@ -27,18 +27,15 @@ module Channel
 
     def self.restclient_connection(http_method, url, auth, payload={}, query={})
       headers = {
-        host: "api.bukalapak.com",
         authorization: auth,
         content_type: :json,
-        accept: :json,
-        user_agent: "Bukalapak"
+        accept: :json
       }
 
       case http_method.to_sym
       when :get
         headers[:params] = query
         restclient(
-          context,
           {
             method: http_method.to_sym,
             url: url,
@@ -47,7 +44,6 @@ module Channel
         )
       when :post, :patch
         restclient(
-          context,
           {
             method: http_method.to_sym,
             url: url,
