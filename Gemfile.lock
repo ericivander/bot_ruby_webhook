@@ -10,15 +10,23 @@ GEM
       descendants_tracker (~> 0.0.1)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
+    domain_name (0.5.20180417)
+      unf (>= 0.0.5, < 1.0.0)
     dotenv (2.4.0)
     equalizer (0.0.11)
     faraday (0.15.0)
       multipart-post (>= 1.2, < 3)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
     ice_nine (0.11.2)
     inflecto (0.0.2)
     method_source (0.9.0)
+    mime-types (3.1)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2016.0521)
     multipart-post (2.0.0)
     mustermann (1.0.2)
+    netrc (0.11.0)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -26,6 +34,10 @@ GEM
     rack (2.0.5)
     rack-protection (2.0.1)
       rack
+    rest-client (2.0.2)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     sinatra (2.0.1)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -37,6 +49,9 @@ GEM
       virtus
     thread_safe (0.3.6)
     tilt (2.0.8)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.5)
     virtus (1.0.5)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
@@ -50,6 +65,7 @@ DEPENDENCIES
   dotenv
   pry
   puma
+  rest-client
   sinatra
   telegram-bot-ruby
 

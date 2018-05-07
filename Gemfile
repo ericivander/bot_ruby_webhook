@@ -6,6 +6,7 @@ gem 'dotenv'
 gem 'puma'
 gem 'sinatra'
 gem 'telegram-bot-ruby'
+gem 'rest-client'
 
 group :development do
   gem 'pry'
