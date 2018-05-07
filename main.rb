@@ -29,7 +29,7 @@ class Main < Sinatra::Base
   def do_something_with_text(text, username)
     reply = "You just typed #{text}"
     if text == '/start'
-      reply = 'Welcome to Point!'
+      reply = 'Welcome to Point #{username}!'
     elsif text == '/get'
       reply = retrieve_assigned_issue('maulana.muzakki')
     end
