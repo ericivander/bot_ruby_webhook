@@ -6,7 +6,7 @@ module Channel
       end
 
       def run!
-        endpoint = ENV['JIRA_ENDPOINT'] + "rest/agile/1.0/board/1/issue"
+        endpoint = ENV['JIRA_ENDPOINT'] + "/rest/agile/1.0/board/1/issue"
         response = Channel::Connection.get(endpoint, auth, query_params)
       end
 
