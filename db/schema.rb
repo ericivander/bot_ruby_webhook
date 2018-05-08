@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2018_05_07_172953) do
     t.index ["created_at"], name: "index_users_on_created_at"
     t.index ["jira_user_email"], name: "index_users_on_jira_user_email"
     t.index ["telegram_user_id"], name: "index_users_on_telegram_user_id"
+    t.index ["telegram_username"], name: "index_users_on_telegram_username"
     t.index ["updated_at"], name: "index_users_on_updated_at"
   end
 
