@@ -52,3 +52,5 @@
 1. Login to Heroku `$ heroku login`
 
 2. On your local repository do `$ heroku create <YOUR_APP_NAME>`
+
+3. Open your Heroku apps dashboard then add new `Config Vars` with key: `TELEGRAM_BOT_TOKEN` and value: `TOKEN` under `Setting menu`
